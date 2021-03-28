@@ -30,7 +30,7 @@ import java.util.Map;
  * Functional/ Integration tests for the flag alerts job
  */
 @ActiveProfiles("test")
-@SpringBootTest({"spring.batch.job.enabled=false", "flag-alerts.parser.invalid-entry.skip-limit=1"})
+@SpringBootTest({"spring.batch.job.enabled=false", "flag-alerts.parser.invalid-entry.skip-limit=2"})
 @SpringBatchTest
 @Slf4j
 public class FlagAlertsJobFunctionalTests {
@@ -93,14 +93,15 @@ public class FlagAlertsJobFunctionalTests {
     }
 
     /**
-     * Tests for fault tolerance. One invalid record will be skipped, and job marked as complete
+     * Tests for fault tolerance. Two invalid record will be skipped, and job marked as complete
      */
     @Test
     public void testJobExecution_skip_invalid_complete() throws Exception {
 
         final Path tempLogFile = Files.createTempFile("logfile", ".txt");
         tempLogFile.toFile().deleteOnExit();
-        Files.write(tempLogFile, "{testInvalid}".getBytes(StandardCharsets.UTF_8));
+        // One missing required id field, One invalid JSON entry
+        Files.write(tempLogFile, String.format("{\"state\":\"FINISHED\", \"timestamp\": 1491377495218}%n{testInvalid}").getBytes(StandardCharsets.UTF_8));
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(getJobParameters(tempLogFile.toString()));
         Assert.assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
 
@@ -109,7 +110,7 @@ public class FlagAlertsJobFunctionalTests {
     }
 
     /**
-     * Tests for fault tolerance beyond the configured skip limit(1) for tests.
+     * Tests for fault tolerance beyond the configured skip limit(2) for tests.
      * Job should be marked as failed, with no entries in the alert table
      */
     @Test
@@ -117,7 +118,8 @@ public class FlagAlertsJobFunctionalTests {
 
         final Path tempLogFile = Files.createTempFile("logfile", ".txt");
         tempLogFile.toFile().deleteOnExit();
-        Files.write(tempLogFile, String.format("{testInvalid}%n{testInvalid2}").getBytes(StandardCharsets.UTF_8));
+        // One missing required id field, Two invalid JSON entry
+        Files.write(tempLogFile, String.format("{\"state\":\"FINISHED\", \"timestamp\": 1491377495218}%n{testInvalid}%n{testInvalid2}").getBytes(StandardCharsets.UTF_8));
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(getJobParameters(tempLogFile.toString()));
         Assert.assertEquals("FAILED", jobExecution.getExitStatus().getExitCode());
 
