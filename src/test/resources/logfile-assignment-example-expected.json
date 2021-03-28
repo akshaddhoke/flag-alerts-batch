@@ -1,0 +1,23 @@
+[
+  {
+    "EVENT_ID": "scsmbstgra",
+    "EVENT_DURATION": 5,
+    "EVENT_HOST": "12345",
+    "EVENT_TYPE": "APPLICATION_LOG",
+    "ALERT": "true"
+  },
+  {
+    "EVENT_ID": "scsmbstgrb",
+    "EVENT_DURATION": 3,
+    "EVENT_HOST": null,
+    "EVENT_TYPE": null,
+    "ALERT": "false"
+  },
+  {
+    "EVENT_ID": "scsmbstgrc",
+    "EVENT_DURATION": 0,
+    "EVENT_HOST": null,
+    "EVENT_TYPE": null,
+    "ALERT": "false"
+  }
+]
