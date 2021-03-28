@@ -23,7 +23,7 @@ Maven is the build tool used for flag-alerts-batch. You can build the project an
 
 Running tests via maven:
 
-    $ ./mvnw clean test install
+    $ ./mvnw clean test
 
 ## Running the application locally using IDE
 
