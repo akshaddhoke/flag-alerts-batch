@@ -13,7 +13,6 @@ class FlagAlertsBatchApplicationTests {
 
 	@Test
 	void contextLoads() throws IOException {
-//		RandomizedLogFileGenerator.generateLogFile("D:\\Study\\Workspaces\\IdeaProjects\\log-analyzer\\log-analyzer\\src\\main\\resources\\logfile-generated.txt", (long)1024 * 1024 * 1024);
 		log.debug("Application Context Loaded!");
 	}
 
