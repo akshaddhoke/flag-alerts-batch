@@ -35,9 +35,7 @@ Main class `com.test.assignment.cs.flagalerts.FlagAlertsBatchApplication`, and c
  
 ## Running the application using JAR file
 
-Download the built jar from latest build in [Maven Workflow]((https://github.com/akshaddhoke/flag-alerts-batch/actions/workflows/maven.yml)), Or
-Once the application is built locally, use the jar from `target/flag-alerts-batch-0.0.1-SNAPSHOT.jar` to run the application
-Example:
+Download the built jar from latest build in [Maven Workflow](https://github.com/akshaddhoke/flag-alerts-batch/actions/workflows/maven.yml), Or once the application is built locally, use the jar from `target/flag-alerts-batch-0.0.1-SNAPSHOT.jar` to run the application. Example:
 
     $ java -jar flag-alerts-batch-0.0.1-SNAPSHOT.jar log-events.file=logfile-generated.txt
 
