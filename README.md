@@ -1,4 +1,4 @@
-# Flag Alerts Solution Overview
+# Flag Alerts Solution Overview [![Java CI with Maven](https://github.com/akshaddhoke/flag-alerts-batch/actions/workflows/maven.yml/badge.svg)](https://github.com/akshaddhoke/flag-alerts-batch/actions/workflows/maven.yml)
 The following were the key design concerns/ decisions for designing the solution:
 
 * Batch Processing: As the input events were to be read from a log file instead of receiving events as a stream, the log file will be batch-processed for flagging alerts
@@ -35,7 +35,8 @@ Main class `com.test.assignment.cs.flagalerts.FlagAlertsBatchApplication`, and c
  
 ## Running the application using JAR file
 
-Once the application is built, use the jar from `target/flag-alerts-batch-0.0.1-SNAPSHOT.jar` to run the application
+Download the built jar from latest build in [Maven Workflow]((https://github.com/akshaddhoke/flag-alerts-batch/actions/workflows/maven.yml)), Or
+Once the application is built locally, use the jar from `target/flag-alerts-batch-0.0.1-SNAPSHOT.jar` to run the application
 Example:
 
     $ java -jar flag-alerts-batch-0.0.1-SNAPSHOT.jar log-events.file=logfile-generated.txt
